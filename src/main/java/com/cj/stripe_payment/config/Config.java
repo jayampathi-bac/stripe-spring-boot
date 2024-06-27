@@ -8,7 +8,7 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class Config {
     @Value("${stripe.api.secretKey}")
-    private static String secretKey;
+    private String secretKey;
 
     @PostConstruct
     public void  initSecretKey(){
