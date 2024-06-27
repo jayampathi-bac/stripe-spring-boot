@@ -12,4 +12,6 @@ import lombok.Setter;
 public class Response {
     private String intentID;
     private String clientSecret;
+    private boolean requiresAction;
 }
+

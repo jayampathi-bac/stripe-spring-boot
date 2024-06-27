@@ -1,6 +1,5 @@
 package com.cj.stripe_payment.controller;
 
-import com.cj.stripe_payment.model.Request;
 import com.cj.stripe_payment.model.Response;
 import com.stripe.exception.StripeException;
 import com.stripe.model.PaymentIntent;
@@ -9,35 +8,38 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.math.BigDecimal;
-import java.math.RoundingMode;
+import java.util.Map;
 
 @RestController
 public class PaymentIntentController {
     @PostMapping("/create-payment-intent")
-    public Response createPaymentIntent(@RequestBody Request request)
-            throws StripeException {
-        long amountInCents = request.getAmount().multiply(new BigDecimal(100)).setScale(0, RoundingMode.HALF_UP).longValue();
+    public Response createPaymentIntent(@RequestBody Map<String, Object> data) throws StripeException {
+        String paymentMethodId = (String) data.get("payment_method_id");
+        Long amount = (Long) data.get("amount");
 
-        PaymentIntentCreateParams params =
-                PaymentIntentCreateParams.builder()
-                        .setAmount(amountInCents )
-                        .putMetadata("productName",
-                                request.getProductName())
-                        .setCurrency("usd")
-                        .setAutomaticPaymentMethods(
-                                PaymentIntentCreateParams
-                                        .AutomaticPaymentMethods
-                                        .builder()
-                                        .setEnabled(true)
-                                        .build()
-                        )
-                        .build();
+        PaymentIntentCreateParams createParams = PaymentIntentCreateParams.builder()
+                .setAmount(amount * 100L)
+                .setCurrency("usd")
+                .setPaymentMethod(paymentMethodId)
+                .setConfirmationMethod(PaymentIntentCreateParams.ConfirmationMethod.MANUAL)
+                .setConfirm(true)
+                .setPaymentMethodOptions(
+                        PaymentIntentCreateParams.PaymentMethodOptions.builder()
+                                .setCard(
+                                        PaymentIntentCreateParams.PaymentMethodOptions.Card.builder()
+                                                .setRequestThreeDSecure(PaymentIntentCreateParams.PaymentMethodOptions.Card.RequestThreeDSecure.ANY)
+                                                .build()
+                                )
+                                .build()
+                )
+                .build();
 
-        PaymentIntent intent =
-                PaymentIntent.create(params);
+        PaymentIntent intent = PaymentIntent.create(createParams);
 
-        return new Response(intent.getId(),
-                intent.getClientSecret());
+        if ("requires_action".equals(intent.getStatus())) {
+            return new Response(intent.getId(), intent.getClientSecret(), true);
+        }
+
+        return new Response(intent.getId(), intent.getClientSecret(), false);
     }
 }
