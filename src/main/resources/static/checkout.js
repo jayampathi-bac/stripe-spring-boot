@@ -67,7 +67,9 @@ async function handleSubmit(e) {
         elements,
         confirmParams: {
             // Make sure to change this to your payment completion page
-            return_url: "https://dashboard.stripe.com/test/payments/"+paymentIntentID,
+            // return_url: "stripe-ipg-production.up.railway.app/"+paymentIntentID,
+            // return_url: "https://dashboard.stripe.com/test/payments/"+paymentIntentID,
+            return_url: "https://ipg-production-v1-60df94fea361.herokuapp.com/"+paymentIntentID,
             receipt_email: emailAddress
         },
     });
