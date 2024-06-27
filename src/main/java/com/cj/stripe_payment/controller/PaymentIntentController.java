@@ -1,7 +1,7 @@
-package com.javawhizz.stripePayment.controller;
+package com.cj.stripe_payment.controller;
 
-import com.javawhizz.stripePayment.model.Request;
-import com.javawhizz.stripePayment.model.Response;
+import com.cj.stripe_payment.model.Request;
+import com.cj.stripe_payment.model.Response;
 import com.stripe.exception.StripeException;
 import com.stripe.model.PaymentIntent;
 import com.stripe.param.PaymentIntentCreateParams;

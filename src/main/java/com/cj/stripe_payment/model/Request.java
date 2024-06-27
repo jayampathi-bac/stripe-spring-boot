@@ -1,4 +1,4 @@
-package com.javawhizz.stripePayment.model;
+package com.cj.stripe_payment.model;
 
 import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
@@ -12,13 +12,11 @@ import lombok.Setter;
 @AllArgsConstructor
 public class Request {
     @NotNull
-    @Min(4)
     private Long amount;
 
     @Email
     private String email;
 
     @NotBlank
-    @Size(min = 5, max = 200)
     private String productName;
 }

@@ -9,7 +9,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.javawhizz</groupId>
-	<artifactId>stripePayment</artifactId>
+	<artifactId>stripe-payment</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>stripePayment</name>
 	<description>Integrating Stripe payment</description>

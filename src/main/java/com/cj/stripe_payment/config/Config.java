@@ -1,4 +1,4 @@
-package com.javawhizz.stripePayment.config;
+package com.cj.stripe_payment.config;
 
 import com.stripe.Stripe;
 import jakarta.annotation.PostConstruct;
@@ -8,7 +8,7 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class Config {
     @Value("${stripe.api.secretKey}")
-    private String secretKey;
+    private static String secretKey;
 
     @PostConstruct
     public void  initSecretKey(){

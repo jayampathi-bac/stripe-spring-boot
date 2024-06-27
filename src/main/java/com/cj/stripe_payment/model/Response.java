@@ -1,4 +1,4 @@
-package com.javawhizz.stripePayment.model;
+package com.cj.stripe_payment.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

@@ -1,6 +1,6 @@
-package com.javawhizz.stripePayment.controller;
+package com.cj.stripe_payment.controller;
 
-import com.javawhizz.stripePayment.model.Request;
+import com.cj.stripe_payment.model.Request;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
