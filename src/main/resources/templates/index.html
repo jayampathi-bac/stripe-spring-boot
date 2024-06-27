@@ -17,52 +17,24 @@
             <form th:action="@{/}" th:object="${request}" method="post">
                 <h2>Enter product details</h2>
                 <div class="mb-3">
-                    <label for="email"
-                           class="form-label">Email address</label>
-                    <input type="email"
-                           th:field="*{email}"
-                           required class="form-control"
-                           id="email"
-                           aria-describedby="emailHelp">
-                    <div id="emailHelp"
-                         class="form-text">
-                        We'll never share your email with anyone else.
-                    </div>
-                    <p th:if="${#fields.hasErrors('email')}"
-                       th:errors="*{email}"
-                       style="color: red"/>
+                    <label for="email" class="form-label">Email address</label>
+                    <input type="email" th:field="*{email}" required class="form-control" id="email" aria-describedby="emailHelp">
+                    <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+                    <p th:if="${#fields.hasErrors('email')}" th:errors="*{email}" style="color: red"></p>
                 </div>
                 <div class="mb-3">
-                    <label for="amount"
-                           class="form-label">Amount</label>
-                    <input type="number"
-                           required th:field="*{amount}"
-                           class="form-control"
-                           id="amount">
-                    <p th:if="${#fields.hasErrors('amount')}"
-                       th:errors="*{amount}"
-                       style="color: red"/>
-
+                    <label for="amount" class="form-label">Amount</label>
+                    <input type="number" step="0.01" required th:field="*{amount}" class="form-control" id="amount">
+                    <p th:if="${#fields.hasErrors('amount')}" th:errors="*{amount}" style="color: red"></p>
                 </div>
                 <div class="mb-3">
-                    <label for="productName"
-                           class="form-label" >Product Name</label>
-                    <input type="text"
-                           required
-                           th:field="*{productName}"
-                           class="form-control"
-                           id="productName">
-                    <p th:if="${#fields.hasErrors('productName')}"
-                       th:errors="*{productName}"
-                       style="color: red"/>
-
+                    <label for="productName" class="form-label">Product Name</label>
+                    <input type="text" required th:field="*{productName}" class="form-control" id="productName">
+                    <p th:if="${#fields.hasErrors('productName')}" th:errors="*{productName}" style="color: red"></p>
                 </div>
-                <button type="submit"
-                        class="btn btn-primary">Submit</button>
+                <button type="submit" class="btn btn-primary">Submit</button>
             </form>
-
         </div>
-
     </div>
 </div>
 
