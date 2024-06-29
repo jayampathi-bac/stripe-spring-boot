@@ -22,4 +22,6 @@ public class Request {
 
     @NotBlank
     private String productName;
+
+    private String preAuthorizationCode;
 }
